@@ -92,7 +92,14 @@ function App() {
         <Route path='*' element={<NotFound404 />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
-        <Route path='/profile/orders/:number' element={<OrderInfo />} />
+        <Route
+          path='/profile/orders/:id'
+          element={
+            <ProtectedRoute>
+              <OrderInfo />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       {backgroundLocation && (
         <Routes>
@@ -113,7 +120,7 @@ function App() {
             }
           />
           <Route
-            path='/profile/orders/:number'
+            path='/profile/orders/:id'
             element={
               <Modal title='Информация о заказе' onClose={closeModal}>
                 <OrderInfo />
