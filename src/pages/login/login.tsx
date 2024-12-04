@@ -1,12 +1,7 @@
-import { FC, SyntheticEvent, useCallback, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { LoginUI } from '@ui-pages';
-import { useDispatch, useSelector } from '../../services/store';
-import { useNavigate } from 'react-router-dom';
-import {
-  getLogin,
-  selectorIsUserAuth,
-  selectorUser
-} from '../../services/slices/userSlice';
+import { useDispatch } from '../../services/store';
+import { getLogin } from '../../services/actions/userAction';
 
 export const Login: FC = () => {
   const [email, setEmail] = useState('');

@@ -17,9 +17,8 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route/ProtectedRoute';
 import { useEffect } from 'react';
 import { useDispatch } from '../../services/store';
-import { getIngredients } from '../../services/slices/ingredientSlice';
-import { getUser } from '../../services/slices/userSlice';
-import { getFeeds } from '../../services/slices/feedSlice';
+import { getIngredients } from '../../services/actions/ingredientAction';
+import { getUser } from '../../services/actions/userAction';
 
 function App() {
   const navigate = useNavigate();

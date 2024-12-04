@@ -1,17 +1,7 @@
-import { getFeedsApi, getOrderByNumberApi } from '@api';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
+import { getFeeds, getOrderByNumber } from '../actions/feedAction';
 import { RootState } from '../store';
-
-export const getFeeds = createAsyncThunk('feeds/', getFeedsApi);
-
-export const getOrderByNumber = createAsyncThunk(
-  'feeds/orderNumberByNumber',
-  async (data: number) => {
-    const res = await getOrderByNumberApi(data);
-    return res.orders[0];
-  }
-);
 
 interface IFeedState {
   orders: TOrder[];
@@ -35,13 +25,6 @@ export const feedSlice = createSlice({
   name: 'feed',
   initialState,
   reducers: {},
-  // selectors: {
-  //   selectTotal: (state) => state.total,
-  //   selectTotalToday: (state) => state.totalToday,
-  //   selectOrders: (state) => state.orders,
-  //   selectOrderNumber: (state) => state.orderNumber,
-  //   selectIsLoading: (state) => state.isLoading
-  // },
   extraReducers: (builder) => {
     builder
       .addCase(getFeeds.pending, (state) => {
@@ -79,13 +62,5 @@ export const selectOrders = (state: RootState) => state.feed.orders;
 export const selectOrderNumber = (state: RootState) => state.feed.orderNumber;
 export const selectIsLoading = (state: RootState) => state.feed.isLoading;
 
-// export const {
-//   selectOrders,
-//   selectTotal,
-//   selectTotalToday,
-//   selectOrderNumber,
-//   selectIsLoading
-// } = feedSlice.selectors;
 export const {} = feedSlice.actions;
 export default feedSlice.reducer;
-// export const feedReducer = feedSlice.reducer;

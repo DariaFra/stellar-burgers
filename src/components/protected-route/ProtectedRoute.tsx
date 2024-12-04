@@ -1,4 +1,3 @@
-import { configureStore } from '@reduxjs/toolkit';
 import { Preloader } from '@ui';
 import { useSelector } from '../../services/store';
 import { Navigate, useLocation } from 'react-router';

@@ -3,23 +3,18 @@ import { FC, SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 
 import { Preloader } from '@ui';
-import { getUpdateUser, selectorUser } from '../../services/slices/userSlice';
+import { getUpdateUser } from '../../services/actions/userAction';
+import { selectorUser } from '../../services/slices/userSlice';
 
 export const Profile: FC = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectorUser);
+
   const [formValue, setFormValue] = useState({
     name: user.name,
     email: user.email,
     password: ''
   });
-
-  console.log(selectorUser);
-  /** TODO: взять переменную из стора */
-  // const user = {
-  //   name: '',
-  //   email: ''
-  // };
 
   if (!user) {
     return <Preloader />;

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, memo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { BurgerIngredientUI } from '@ui';

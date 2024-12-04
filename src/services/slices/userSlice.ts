@@ -1,42 +1,12 @@
-import {
-  getUserApi,
-  loginUserApi,
-  logoutApi,
-  registerUserApi,
-  TLoginData,
-  TRegisterData,
-  updateUserApi
-} from '@api';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
-import { setCookie } from '../../utils/cookie';
 import { RootState } from '../store';
-
-export const getRegisterUser = createAsyncThunk(
-  'register',
-  async (data: TRegisterData) => {
-    const res = await registerUserApi(data);
-    setCookie('accessToken', res.accessToken);
-    localStorage.setItem('refreshToken', res.refreshToken);
-    return res.user;
-  }
-);
-
-export const getLogin = createAsyncThunk('login', async (data: TLoginData) => {
-  const res = await loginUserApi(data);
-  setCookie('accessToken', res.accessToken);
-  localStorage.setItem('refreshToken', res.refreshToken);
-  return res.user;
-});
-
-export const getUser = createAsyncThunk('auth/user', getUserApi);
-
-export const getLogout = createAsyncThunk('user/logout', logoutApi);
-
-export const getUpdateUser = createAsyncThunk(
-  'update',
-  async (data: TRegisterData) => updateUserApi(data)
-);
+import {
+  getLogin,
+  getLogout,
+  getRegisterUser,
+  getUpdateUser
+} from '../actions/userAction';
 
 interface IRegisterState {
   user: TUser;
@@ -58,7 +28,17 @@ const initialState: IRegisterState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action: PayloadAction<TUser>) => {
+      state.user = action.payload;
+    },
+    setAuth: (state, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload;
+    },
+    setChecked: (state, action: PayloadAction<boolean>) => {
+      state.isChecked = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getRegisterUser.pending, (state) => {
@@ -94,17 +74,6 @@ const userSlice = createSlice({
       .addCase(getUpdateUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
-      .addCase(getUser.pending, (state) => {
-        state.error = null;
-      })
-      .addCase(getUser.rejected, (state, action) => {
-        state.error = action.error.message;
-        state.isChecked = true;
-      })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isChecked = true;
-      })
       .addCase(getLogout.pending, (state) => {
         state.error = null;
       })
@@ -122,5 +91,5 @@ const userSlice = createSlice({
 export const selectorUser = (state: RootState) => state.user.user;
 export const selectorIsUserAuth = (state: RootState) => state.user.isAuth;
 export const selectorIsUserChecked = (state: RootState) => state.user.isChecked;
-export const {} = userSlice.actions;
+export const { setUser, setAuth, setChecked } = userSlice.actions;
 export default userSlice.reducer;

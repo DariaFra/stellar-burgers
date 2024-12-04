@@ -2,7 +2,7 @@ import { Preloader } from '@ui';
 import { FeedUI } from '@ui-pages';
 import { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
-import { getFeeds } from '../../services/slices/feedSlice';
+import { getFeeds } from '../../services/actions/feedAction';
 
 export const Feed: FC = () => {
   const dispatch = useDispatch();

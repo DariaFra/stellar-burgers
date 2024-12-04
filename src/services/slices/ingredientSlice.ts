@@ -1,17 +1,7 @@
-import { getIngredientsApi } from '@api';
-import {
-  createAsyncThunk,
-  createSelector,
-  createSlice,
-  nanoid,
-  PayloadAction
-} from '@reduxjs/toolkit';
+import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils-types';
-
-export const getIngredients = createAsyncThunk(
-  'ingredients',
-  getIngredientsApi
-);
+import { RootState } from '../store';
+import { getIngredients } from '../actions/ingredientAction';
 
 interface IIngredientState {
   ingredients: TIngredient[];
@@ -65,25 +55,6 @@ const ingredientsSlice = createSlice({
       state.currentIngredient[action.payload + 1] = current;
     }
   },
-  selectors: {
-    selectIsLoading: (state) => state.isLoading,
-    selectIngredients: (state) => state.ingredients
-    // selectBun: createSelector(
-    //   (state: IIngredientState) => state.ingredients,
-    //   (ingredients): TIngredient[] =>
-    //     ingredients.filter((ingredient) => ingredient.type === 'bun')
-    // ),
-    // selectMain: createSelector(
-    //   (state: IIngredientState) => state.ingredients,
-    //   (ingredients): TIngredient[] =>
-    //     ingredients.filter((ingredient) => ingredient.type === 'main')
-    // ),
-    // selectSauce: createSelector(
-    //   (state: IIngredientState) => state.ingredients,
-    //   (ingredients): TIngredient[] =>
-    //     ingredients.filter((ingredient) => ingredient.type === 'sauce')
-    // )
-  },
   extraReducers: (builder) => {
     builder
       .addCase(getIngredients.pending, (state) => {
@@ -101,13 +72,10 @@ const ingredientsSlice = createSlice({
   }
 });
 
-export const {
-  // selectBun,
-  selectIngredients,
-  selectIsLoading
-  // selectMain,
-  // selectSauce
-} = ingredientsSlice.selectors;
+export const selectIsLoading = (state: RootState) =>
+  state.ingredients.isLoading;
+export const selectIngredients = (state: RootState) =>
+  state.ingredients.ingredients;
 
 export const {
   addBun,
@@ -118,4 +86,3 @@ export const {
   moveIngredientDown
 } = ingredientsSlice.actions;
 export default ingredientsSlice.reducer;
-// export const feedReducer = ingredientsSlice.reducer;

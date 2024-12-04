@@ -1,11 +1,7 @@
-import { orderBurgerApi } from '@api';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
-
-export const getOrderBurger = createAsyncThunk(
-  'orderBurger/',
-  async (data: string[]) => orderBurgerApi(data)
-);
+import { getOrderBurger } from '../actions/constructorAction';
+import { RootState } from '../store';
 
 interface IOrderBurgerState {
   orderRequest: boolean;
@@ -19,7 +15,7 @@ const initialState: IOrderBurgerState = {
   error: null
 };
 
-const orderBurgerSlice = createSlice({
+const constructorSlice = createSlice({
   name: 'orderBurger',
   initialState,
   reducers: {
@@ -27,10 +23,6 @@ const orderBurgerSlice = createSlice({
       state.orderRequest = false;
       state.orderModalData = null;
     }
-  },
-  selectors: {
-    orderRequest: (state) => state.orderRequest,
-    orderModalData: (state) => state.orderModalData
   },
   extraReducers: (builder) => {
     builder
@@ -49,6 +41,10 @@ const orderBurgerSlice = createSlice({
   }
 });
 
-export const { orderRequest, orderModalData } = orderBurgerSlice.selectors;
-export const { orderCancel } = orderBurgerSlice.actions;
-export default orderBurgerSlice.reducer;
+export const orderRequest = (state: RootState) =>
+  state.orderBurger.orderRequest;
+export const orderModalData = (state: RootState) =>
+  state.orderBurger.orderModalData;
+
+export const { orderCancel } = constructorSlice.actions;
+export default constructorSlice.reducer;

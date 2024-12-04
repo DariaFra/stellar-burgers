@@ -1,7 +1,7 @@
 import { getOrdersApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
-import { selectIsLoading } from './feedSlice';
+import { RootState } from '../store';
 
 export const getOrders = createAsyncThunk('profileOrders', getOrdersApi);
 
@@ -21,10 +21,6 @@ const profileOrdersSlice = createSlice({
   name: 'profileOrders',
   initialState,
   reducers: {},
-  selectors: {
-    selectOrdersProfile: (state) => state.profileOrders,
-    selectIsLoadingProfile: (state) => state.isLoading
-  },
   extraReducers: (builder) => {
     builder
       .addCase(getOrders.pending, (state) => {
@@ -42,7 +38,9 @@ const profileOrdersSlice = createSlice({
   }
 });
 
-export const { selectOrdersProfile, selectIsLoadingProfile } =
-  profileOrdersSlice.selectors;
+export const selectOrdersProfile = (state: RootState) =>
+  state.profileOrders.profileOrders;
+export const selectIsLoadingProfile = (state: RootState) =>
+  state.profileOrders.isLoading;
 export const {} = profileOrdersSlice.actions;
 export default profileOrdersSlice.reducer;
