@@ -9,10 +9,10 @@ import { selectIngredients } from '../../services/slices/ingredientSlice';
 
 export const OrderInfo: FC = () => {
   const dispatch = useDispatch();
-  const { number } = useParams<{ number: string }>();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    dispatch(getOrderByNumber(Number(number)));
+    dispatch(getOrderByNumber(Number(id)));
   }, []);
 
   const orderData = useSelector((state) => state.feed.orderNumber);

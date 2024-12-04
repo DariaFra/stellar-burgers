@@ -49,9 +49,7 @@ export const getUser = createAsyncThunk(
   }
 );
 
-export const getLogout = createAsyncThunk('user/logout', async () =>
-  logoutApi()
-);
+export const getLogout = createAsyncThunk('user/logout', logoutApi);
 
 export const getUpdateUser = createAsyncThunk(
   'user/update',

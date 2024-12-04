@@ -1,7 +1,7 @@
 import { getFeedsApi, getOrderByNumberApi } from '@api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const getFeeds = createAsyncThunk('feeds/', async () => getFeedsApi());
+export const getFeeds = createAsyncThunk('feeds/getFeeds', getFeedsApi);
 
 export const getOrderByNumber = createAsyncThunk(
   'feeds/orderNumberByNumber',
