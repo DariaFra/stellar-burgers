@@ -11,7 +11,7 @@ interface IIngredientState {
   error: string | null | undefined;
 }
 
-const initialState: IIngredientState = {
+export const initialState: IIngredientState = {
   ingredients: [],
   bun: null,
   currentIngredient: [],
@@ -19,7 +19,7 @@ const initialState: IIngredientState = {
   error: null
 };
 
-const ingredientsSlice = createSlice({
+export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
@@ -43,16 +43,22 @@ const ingredientsSlice = createSlice({
       state.currentIngredient.splice(action.payload, 1);
     },
     moveIngredientDown(state, action: PayloadAction<number>) {
-      const current = state.currentIngredient[action.payload];
-      state.currentIngredient[action.payload] =
-        state.currentIngredient[action.payload + 1];
-      state.currentIngredient[action.payload + 1] = current;
+      [
+        state.currentIngredient[action.payload],
+        state.currentIngredient[action.payload + 1]
+      ] = [
+        state.currentIngredient[action.payload + 1],
+        state.currentIngredient[action.payload]
+      ];
     },
     moveIngredientUp(state, action: PayloadAction<number>) {
-      const current = state.currentIngredient[action.payload];
-      state.currentIngredient[action.payload] =
-        state.currentIngredient[action.payload - 1];
-      state.currentIngredient[action.payload + 1] = current;
+      [
+        state.currentIngredient[action.payload],
+        state.currentIngredient[action.payload - 1]
+      ] = [
+        state.currentIngredient[action.payload - 1],
+        state.currentIngredient[action.payload]
+      ];
     }
   },
   extraReducers: (builder) => {

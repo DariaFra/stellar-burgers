@@ -8,14 +8,14 @@ import {
   getUpdateUser
 } from '../actions/userAction';
 
-interface IRegisterState {
+export interface IRegisterState {
   user: TUser;
   isAuth: boolean;
   isChecked: boolean;
   error: string | null | undefined;
 }
 
-const initialState: IRegisterState = {
+export const initialState: IRegisterState = {
   user: {
     name: '',
     email: ''
@@ -25,7 +25,7 @@ const initialState: IRegisterState = {
   error: null
 };
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
