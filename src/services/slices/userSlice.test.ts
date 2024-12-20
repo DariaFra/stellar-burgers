@@ -42,7 +42,9 @@ describe('userSlice', () => {
 
     expect(state.error).toBe(null)
   })
+})
 
+describe('getRegisterUser', () => {
   it('должен обрабатывать getRegisterUser.rejected', () => {
     const errorMessage = 'Ошибка getRegisterUser';
     const action = {type: getRegisterUser.rejected.type, error: {message: errorMessage}}
@@ -60,7 +62,9 @@ describe('userSlice', () => {
     expect(state.isAuth).toBe(true);
     expect(state.isChecked).toBe(true)
   })
+})
 
+describe('getLogin', () => {
   it('должен обрабатывать getLogin.pending', () => {
     const action = { type: getLogin.pending.type };
     const state = reducer(initialState, action);
@@ -92,7 +96,9 @@ describe('userSlice', () => {
     expect(state.isChecked).toBe(true);
     expect(state.error).toBe(null);
   });
+});
 
+describe('getUpdateUser', () => {
   it('должен обрабатывать getUpdateUser.pending', () => {
     const action = { type: getUpdateUser.pending.type };
     const state = reducer(initialState, action);
@@ -122,7 +128,9 @@ describe('userSlice', () => {
     expect(state.user).toEqual(updatedUser);
     expect(state.error).toBe(null);
   });
+});
 
+describe('getLogout', () => {
   it('должен обрабатывать getLogout.pending', () => {
     const action = { type: getLogout.pending.type };
     const state = reducer(initialState, action);
@@ -178,8 +186,7 @@ jest.mock('../../utils/burger-api');
 jest.mock('../../utils/cookie');
 jest.spyOn(localStorage, 'setItem');
 
-
-describe('getRegisterUser', () => {
+describe('getRegisterUser async', () => {
   it('должен регистрировать пользователя и сохранять токены', async () => {
     const mockData = { email: 'ivan.ivanov@example.com', name: 'Иван Иванов', password: '12345' };
     const mockResponse = {
@@ -201,9 +208,7 @@ describe('getRegisterUser', () => {
   });
 });
 
-
-
-describe('getLogin', () => {
+describe('getLogin async', () => {
 
   it('должен выполнять вход и сохранять токены', async () => {
     const mockData = { email: 'ivan.ivanov@example.com', password: '12345' };
@@ -227,7 +232,7 @@ describe('getLogin', () => {
   });
 });
 
-describe('getUser', () => {
+describe('getUser async', () => {
   it('должен загружать данные пользователя при наличии токена', async () => {
     const mockResponse = {name: 'Иван Иванов', email: 'ivan.ivanov@example.com'};
 
@@ -259,7 +264,7 @@ describe('getUser', () => {
   });
 });
 
-describe('getUpdateUser', () => {
+describe('getUpdateUser async', () => {
   it('должен обновлять данные пользователя', async () => {
     const mockData = { name: 'Иван Иванов', email: 'ivan.ivanov@example.com', password: '12345'};
     const mockResponse = {mockData};
