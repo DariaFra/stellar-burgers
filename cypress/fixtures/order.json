@@ -1,0 +1,34 @@
+{
+    "success": true,
+    "order": {
+      "number": "12345",
+      "name": "Краторный бургер с соусом Spicy-X",
+      "status": "done",
+      "createdAt": "2024-06-15T10:00:00.000Z",
+      "updatedAt": "2024-06-15T10:05:00.000Z",
+      "ingredients": [
+        {
+          "_id": "643d69a5c3f7b9001cfa093c",
+          "name": "Краторная булка N-200i",
+          "type": "bun",
+          "price": 1255,
+          "image": "https://code.s3.yandex.net/react/code/bun-02.png"
+        },
+        {
+          "_id": "643d69a5c3f7b9001cfa0942",
+          "name": "Соус Spicy-X",
+          "type": "sauce",
+          "price": 90,
+          "image": "https://code.s3.yandex.net/react/code/sauce-02.png"
+        },
+        {
+          "_id": "643d69a5c3f7b9001cfa093f",
+          "name": "Мясо бессмертных моллюсков Protostomia",
+          "type": "main",
+          "price": 1337,
+          "image": "https://code.s3.yandex.net/react/code/meat-02.png"
+        }
+      ],
+      "totalPrice": 2682
+    }
+  }

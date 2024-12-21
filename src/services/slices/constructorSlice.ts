@@ -3,19 +3,19 @@ import { TOrder } from '@utils-types';
 import { getOrderBurger } from '../actions/constructorAction';
 import { RootState } from '../store';
 
-interface IOrderBurgerState {
+export interface IOrderBurgerState {
   orderRequest: boolean;
   orderModalData: TOrder | null;
   error: string | null | undefined;
 }
 
-const initialState: IOrderBurgerState = {
+export const initialState: IOrderBurgerState = {
   orderRequest: false,
   orderModalData: null,
   error: null
 };
 
-const constructorSlice = createSlice({
+export const constructorSlice = createSlice({
   name: 'orderBurger',
   initialState,
   reducers: {

@@ -1,11 +1,8 @@
 import { ProfileOrdersUI } from '@ui-pages';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
-
-import {
-  getOrders,
-  selectOrdersProfile
-} from '../../services/slices/profileOrdersSlice';
+import { getOrders } from '../../services/actions/profileOrdersAction';
+import { selectOrdersProfile } from '../../services/slices/profileOrdersSlice';
 import { getFeeds } from '../../services/actions/feedAction';
 
 export const ProfileOrders: FC = () => {

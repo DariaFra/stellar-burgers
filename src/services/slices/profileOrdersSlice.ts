@@ -1,23 +1,21 @@
-import { getOrdersApi } from '@api';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { RootState } from '../store';
+import { getOrders } from '../actions/profileOrdersAction';
 
-export const getOrders = createAsyncThunk('profileOrders', getOrdersApi);
-
-interface IProfileOrdersState {
+export interface IProfileOrdersState {
   profileOrders: TOrder[];
   isLoading: boolean;
   error: string | null | undefined;
 }
 
-const initialState: IProfileOrdersState = {
+export const initialState: IProfileOrdersState = {
   profileOrders: [],
-  isLoading: true,
+  isLoading: false,
   error: null
 };
 
-const profileOrdersSlice = createSlice({
+export const profileOrdersSlice = createSlice({
   name: 'profileOrders',
   initialState,
   reducers: {},
@@ -32,8 +30,9 @@ const profileOrdersSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getOrders.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.profileOrders = action.payload;
+        state.isLoading = false;
+        state.error = null;
       });
   }
 });

@@ -3,7 +3,7 @@ import { TOrder } from '@utils-types';
 import { getFeeds, getOrderByNumber } from '../actions/feedAction';
 import { RootState } from '../store';
 
-interface IFeedState {
+export interface IFeedState {
   orders: TOrder[];
   total: number;
   totalToday: number;
@@ -12,7 +12,7 @@ interface IFeedState {
   error: string | null | undefined;
 }
 
-const initialState: IFeedState = {
+export const initialState: IFeedState = {
   orders: [],
   total: 0,
   totalToday: 0,
