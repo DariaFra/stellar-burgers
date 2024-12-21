@@ -10,5 +10,5 @@
     "include": [
       "../node_modules/cypress",
       "./**/*.ts"
-, "e2e/burger-constructor.cy.js"    ]
+, "e2e/burger-constructor.cy.ts"    ]
   }

@@ -15,7 +15,7 @@ describe('rootReducer', () => {
     expect(state.profileOrders).toEqual(profileOrdersInitialState);
     expect(state.user).toEqual(userInitialState);
   });
-  
+
   it('не должен изменять состояние при неизвестном экшене', () => {
     const prevState = rootReducer(undefined, { type: '@@INIT' });
     const newState = rootReducer(prevState, { type: 'UNKNOWN_ACTION' });

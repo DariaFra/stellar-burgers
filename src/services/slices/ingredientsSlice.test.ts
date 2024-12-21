@@ -128,7 +128,7 @@ describe('ingredientsSlice', () => {
       const expectedResult = {
         ...initialState,
         bun: null,
-        currentIngredient: [] 
+        currentIngredient: []
       };
       const state = ingredientsSlice.reducer(
         initialStateWithIngredients,

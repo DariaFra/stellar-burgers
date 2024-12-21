@@ -1,0 +1,15 @@
+export const SELECTORS = {
+    ingredientItem: 'li',
+    authUserName: 'input[name="name"]',
+    authUserEmail: 'input[name="email"]',
+    modal: '[data-testid="modal"]',
+    modalOverlay: '[data-testid="modal-overlay"]',
+    modalXButton: '[data-testid="modal"] button',
+    profileName: '[data-testid="profile-name"]',
+    topBun: '[data-testid="constructor-top-bun"]',
+    bottomBun: '[data-testid="constructor-bottom-bun"]',
+    mainIngredient: '[data-testid="constructor-main"]',
+    orderNumber: '[data-testid="order-number"]',
+    orderButton: 'button:contains("Оформить заказ")',
+    addButton: 'button:contains("Добавить")',
+};
